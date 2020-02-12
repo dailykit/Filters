@@ -69,7 +69,7 @@ const not_contain_exactly = (input, arr) => {
     });
 }
 
-const is_known = (input, arr) => {
+const known = (input, arr) => {
 
     return filter(arr, function (o) {
         let matchedObjs = [];
@@ -88,7 +88,7 @@ const is_known = (input, arr) => {
     });
 }
 
-const is_unknown = (input, arr) => {
+const unknown = (input, arr) => {
 
     return filter(arr, function (o) {
         let matchedObjs = [];
@@ -149,8 +149,8 @@ module.exports = {
     eq,
     contain_exactly,
     not_contain_exactly,
-    is_known,
-    is_unknown,
+    known,
+    unknown,
     is_any_of,
     is_none_of
 }

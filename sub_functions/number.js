@@ -104,7 +104,7 @@ const gte = (input, arr) => {
     });
 }
 
-const btw = (input, arr) => {
+const between = (input, arr) => {
 
     return filter(arr, function (o) {
         let matchedObjs = [];
@@ -167,7 +167,7 @@ module.exports = {
     lte,
     gt,
     gte,
-    btw,
+    between,
     unknown,
     known
 }

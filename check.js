@@ -6,72 +6,52 @@ const date_filter = require('./sub_functions/date');
 
 const number_filters = (input, operation, data) => {
 
-    var result;
-
     switch (operation) {
 
         case 'eq':
-            result = num_filter.eq(input, data);
-            break;
+            return num_filter.eq(input, data);
         case 'lt':
-            result = num_filter.lt(input, data);
-            break;
+            return num_filter.lt(input, data);
         case 'lte':
-            result = num_filter.lte(input, data);
-            break;
+            return num_filter.lte(input, data);
         case 'gt':
-            result = num_filter.gt(input, data);
-            break;
+            return num_filter.gt(input, data);
         case 'gte':
-            result = num_filter.gte(input, data);
-            break;
+            return num_filter.gte(input, data);
+        case 'between':
+            return num_filter.between(input, data);
         case 'known':
-            result = num_filter.known(input, data);
-            break;
+            return num_filter.known(input, data);
         case 'unknown':
-            result = num_filter.unknown(input, data);
-            break;
+            return num_filter.unknown(input, data);
         default:
-            result = "Error: Operation type invalid."
+            return "Error: Operation type invalid."
     }
-
-    return result;
 }
 
 //--------------------- String filters --------------------------->
 
 const string_filters = (input, operation, data) => {
 
-    var result;
-
     switch (operation) {
 
         case 'eq':
-            result = string_filter.eq(input, data);
-            break;
+            return string_filter.eq(input, data);
         case 'ce':
-            result = string_filter.contain_exactly(input, data);
-            break;
+            return string_filter.contain_exactly(input, data);
         case 'nce':
-            result = string_filter.not_contain_exactly(input, data);
-            break;
+            return string_filter.not_contain_exactly(input, data);
         case 'known':
-            result = string_filter.is_known(input, data);
-            break;
+            return string_filter.known(input, data);
         case 'unknown':
-            result = string_filter.is_unknown(input, data);
-            break;
+            return string_filter.unknown(input, data);
         case 'anyof':
-            result = string_filter.is_any_of(input, data);
-            break;
+            return string_filter.is_any_of(input, data);
         case 'noneof':
-            result = string_filter.is_none_of(input, data);
-            break;
+            return string_filter.is_none_of(input, data);
         default:
-            result = "Error: Operation type invalid."
+            return "Error: Operation type invalid."
     }
-
-    return result;
 }
 
 
@@ -79,33 +59,23 @@ const string_filters = (input, operation, data) => {
 
 const date_filters = (input, operation, data) => {
 
-    var result;
-
     switch (operation) {
 
         case 'eq':
-            result = date_filter.eq(input, data);
-            break;
+            return date_filter.eq(input, data);
         case 'before':
-            result = date_filter.before(input, data);
-            break;
+            return date_filter.before(input, data);
         case 'after':
-            result = date_filter.after(input, data);
-            break;
+            return date_filter.after(input, data);
         case 'known':
-            result = date_filter.known(input, data);
-            break;
+            return date_filter.known(input, data);
         case 'unknown':
-            result = date_filter.unknown(input, data);
-            break;
+            return date_filter.unknown(input, data);
         case 'between':
-            result = date_filter.between(input, data);
-            break;
+            return date_filter.between(input, data);
         default:
-            result = "Error: Operation type invalid."
+            return "Error: Operation type invalid."
     }
-
-    return result;
 }
 
 module.exports = {

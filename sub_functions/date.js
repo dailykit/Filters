@@ -84,7 +84,7 @@ const between = (input, arr) => {
 
     return filter(arr, function (o) {
         let matchedObjs = [];
-        deepSearch(o, input.key, matchedObjs);
+        let obj = deepSearch(o, input.key, matchedObjs);
         if (matchedObjs.length != 0) {
             for (let i = 0; i < matchedObjs.length; i++) {
                 let keyDate = new Date(matchedObjs[i][input.key]).getTime();
