@@ -1,8 +1,8 @@
 function deepSearch(object, key, matchedObjs) {
-    if (object.hasOwnProperty(key))
+    if (object.hasOwnProperty(key)) {
         return object;
+    }
     // returns the object in which the key has been found 
-
     for (var i = 0; i < Object.keys(object).length; i++) {
         if (typeof object[Object.keys(object)[i]] == "object") {
             // recurse on the value of the key if it is of type 'object'

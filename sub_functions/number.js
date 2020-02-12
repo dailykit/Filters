@@ -13,7 +13,7 @@ const {
 const eq = (input, arr) => {
     return filter(arr, function (o) {
         let matchedObjs = [];
-        deepSearch(o, input.key, matchedObjs);
+        let obj = deepSearch(o, input.key, matchedObjs);
         if (matchedObjs.length != 0) {
             for (let i = 0; i < matchedObjs.length; i++) {
                 if (matchedObjs[i][input.key] == input.value)
@@ -21,6 +21,8 @@ const eq = (input, arr) => {
                 else
                     false;
             }
+        } else if (!isUndefined(obj)) {
+            return obj[input.key] == input.value;
         } else
             return false;
     });
@@ -30,7 +32,7 @@ const lt = (input, arr) => {
 
     return filter(arr, function (o) {
         let matchedObjs = [];
-        deepSearch(o, input.key, matchedObjs);
+        let obj = deepSearch(o, input.key, matchedObjs);
         if (matchedObjs.length != 0) {
             for (let i = 0; i < matchedObjs.length; i++) {
                 if (matchedObjs[i][input.key] < input.value)
@@ -38,6 +40,8 @@ const lt = (input, arr) => {
                 else
                     false;
             }
+        } else if (!isUndefined(obj)) {
+            return obj[input.key] < input.value;
         } else
             return false;
     });
@@ -47,7 +51,7 @@ const lte = (input, arr) => {
 
     return filter(arr, function (o) {
         let matchedObjs = [];
-        deepSearch(o, input.key, matchedObjs);
+        let obj = deepSearch(o, input.key, matchedObjs);
         if (matchedObjs.length != 0) {
             for (let i = 0; i < matchedObjs.length; i++) {
                 if (matchedObjs[i][input.key] <= input.value)
@@ -55,6 +59,8 @@ const lte = (input, arr) => {
                 else
                     false;
             }
+        } else if (!isUndefined(obj)) {
+            return obj[input.key] <= input.value;;
         } else
             return false;
     });
@@ -64,7 +70,7 @@ const gt = (input, arr) => {
 
     return filter(arr, function (o) {
         let matchedObjs = [];
-        deepSearch(o, input.key, matchedObjs);
+        let obj = deepSearch(o, input.key, matchedObjs);
         if (matchedObjs.length != 0) {
             for (let i = 0; i < matchedObjs.length; i++) {
                 if (matchedObjs[i][input.key] > input.value)
@@ -72,6 +78,8 @@ const gt = (input, arr) => {
                 else
                     false;
             }
+        } else if (!isUndefined(obj)) {
+            return obj[input.key] > input.value;;
         } else
             return false;
     });
@@ -81,7 +89,7 @@ const gte = (input, arr) => {
 
     return filter(arr, function (o) {
         let matchedObjs = [];
-        deepSearch(o, input.key, matchedObjs);
+        let obj = deepSearch(o, input.key, matchedObjs);
         if (matchedObjs.length != 0) {
             for (let i = 0; i < matchedObjs.length; i++) {
                 if (matchedObjs[i][input.key] >= input.value)
@@ -89,6 +97,8 @@ const gte = (input, arr) => {
                 else
                     false;
             }
+        } else if (!isUndefined(obj)) {
+            return obj[input.key] >= input.value;;
         } else
             return false;
     });
@@ -98,7 +108,7 @@ const btw = (input, arr) => {
 
     return filter(arr, function (o) {
         let matchedObjs = [];
-        deepSearch(o, input.key, matchedObjs);
+        let obj = deepSearch(o, input.key, matchedObjs);
         if (matchedObjs.length != 0) {
             for (let i = 0; i < matchedObjs.length; i++) {
                 if (matchedObjs[i][input.key] > input.min && matchedObjs[i][input.key] < input.max)
@@ -106,6 +116,8 @@ const btw = (input, arr) => {
                 else
                     false;
             }
+        } else if (!isUndefined(obj)) {
+            return (obj[input.key] > input.min && obj[input.key] < input.max);
         } else
             return false;
     });
@@ -115,7 +127,7 @@ const unknown = (input, arr) => {
 
     return filter(arr, function (o) {
         let matchedObjs = [];
-        deepSearch(o, input.key, matchedObjs);
+        let obj = deepSearch(o, input.key, matchedObjs);
         if (matchedObjs.length != 0) {
             for (let i = 0; i < matchedObjs.length; i++) {
                 if (isUndefined(matchedObjs[i][input.key]) || isNull(matchedObjs[i][input.key]))
@@ -123,6 +135,8 @@ const unknown = (input, arr) => {
                 else
                     false;
             }
+        } else if (!isUndefined(obj)) {
+            return false;
         } else
             return true;
     });
@@ -132,7 +146,7 @@ const known = (input, arr) => {
 
     return filter(arr, function (o) {
         let matchedObjs = [];
-        deepSearch(o, input.key, matchedObjs);
+        let obj = deepSearch(o, input.key, matchedObjs);
         if (matchedObjs.length != 0) {
             for (let i = 0; i < matchedObjs.length; i++) {
                 if (!isUndefined(matchedObjs[i][input.key]) && !isNull(matchedObjs[i][input.key]))
@@ -140,6 +154,8 @@ const known = (input, arr) => {
                 else
                     false;
             }
+        } else if (!isUndefined(obj) && !isNull(obj)) {
+            return !isUndefined(obj[input.key]) ? true : false;
         } else
             return false;
     });

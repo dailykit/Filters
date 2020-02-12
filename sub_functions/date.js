@@ -15,7 +15,7 @@ const eq = (input, arr) => {
 
     return filter(arr, function (o) {
         let matchedObjs = [];
-        deepSearch(o, input.key, matchedObjs);
+        let obj = deepSearch(o, input.key, matchedObjs);
         if (matchedObjs.length != 0) {
             for (let i = 0; i < matchedObjs.length; i++) {
                 let keyDate = new Date(matchedObjs[i][input.key]).getTime();
@@ -25,6 +25,10 @@ const eq = (input, arr) => {
                 else
                     false;
             }
+        } else if (!isUndefined(obj)) {
+            let keyDate = new Date(obj[input.key]).getTime();
+            let valueDate = new Date(input.value).getTime();
+            return keyDate === valueDate ? true : false;
         } else
             return false;
     });
@@ -34,7 +38,7 @@ const before = (input, arr) => {
 
     return filter(arr, function (o) {
         let matchedObjs = [];
-        deepSearch(o, input.key, matchedObjs);
+        let obj = deepSearch(o, input.key, matchedObjs);
         if (matchedObjs.length != 0) {
             for (let i = 0; i < matchedObjs.length; i++) {
                 let keyDate = new Date(matchedObjs[i][input.key]).getTime();
@@ -44,6 +48,10 @@ const before = (input, arr) => {
                 else
                     false;
             }
+        } else if (!isUndefined(obj)) {
+            let keyDate = new Date(obj[input.key]).getTime();
+            let valueDate = new Date(input.value).getTime();
+            return keyDate < valueDate ? true : false;
         } else
             return false;
     });
@@ -53,7 +61,7 @@ const after = (input, arr) => {
 
     return filter(arr, function (o) {
         let matchedObjs = [];
-        deepSearch(o, input.key, matchedObjs);
+        let obj = deepSearch(o, input.key, matchedObjs);
         if (matchedObjs.length != 0) {
             for (let i = 0; i < matchedObjs.length; i++) {
                 let keyDate = new Date(matchedObjs[i][input.key]).getTime();
@@ -63,6 +71,10 @@ const after = (input, arr) => {
                 else
                     false;
             }
+        } else if (!isUndefined(obj)) {
+            let keyDate = new Date(obj[input.key]).getTime();
+            let valueDate = new Date(input.value).getTime();
+            return keyDate > valueDate ? true : false;
         } else
             return false;
     });
@@ -83,6 +95,11 @@ const between = (input, arr) => {
                 else
                     false;
             }
+        } else if (!isUndefined(obj)) {
+            let keyDate = new Date(obj[input.key]).getTime();
+            let minValueDate = new Date(input.min).getTime();
+            let maxValueDate = new Date(input.max).getTime();
+            return keyDate > minValueDate && keyDate < maxValueDate ? true : false;
         } else
             return false;
     });
@@ -92,7 +109,7 @@ const known = (input, arr) => {
 
     return filter(arr, function (o) {
         let matchedObjs = [];
-        deepSearch(o, input.key, matchedObjs);
+        let obj = deepSearch(o, input.key, matchedObjs);
         if (matchedObjs.length != 0) {
             for (let i = 0; i < matchedObjs.length; i++) {
                 if (!isUndefined(matchedObjs[i][input.key]) && !isNull(matchedObjs[i][input.key]) && !isEmpty(matchedObjs[i][input.key]))
@@ -100,6 +117,8 @@ const known = (input, arr) => {
                 else
                     false;
             }
+        } else if (!isUndefined) {
+            return !isEmpty(obj[input.key]) && !isNull(obj[input.key]);
         } else
             return false;
     });
@@ -109,7 +128,7 @@ const unknown = (input, arr) => {
 
     return filter(arr, function (o) {
         let matchedObjs = [];
-        deepSearch(o, input.key, matchedObjs);
+        let obj = deepSearch(o, input.key, matchedObjs);
         if (matchedObjs.length != 0) {
             for (let i = 0; i < matchedObjs.length; i++) {
                 if (isUndefined(matchedObjs[i][input.key]) || isNull(matchedObjs[i][input.key]) || isEmpty(matchedObjs[i][input.key]))
@@ -117,6 +136,8 @@ const unknown = (input, arr) => {
                 else
                     false;
             }
+        } else if (!isUndefined(obj)) {
+            return false;
         } else
             return true;
     });

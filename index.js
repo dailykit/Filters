@@ -12,11 +12,17 @@ const filter = (obj, operation, data) => {
     } else if (typeof obj.value === "string" && new Date(obj.value) != 'Invalid Date') {
         return filters.date_filters(obj, operation, data);
     } else {
-        return [];
+        return;
     }
 }
 
 console.log(filter({
-    key: 'date',
-    value: '2020-02-21T07:45:44.661+00:00'
-}, 'before', data));
+    key: 'age',
+    value: 20
+}, 'eq', [{
+    age: 21,
+    name: 'Mark'
+}, {
+    age: 20,
+    name: 'John'
+}]));
