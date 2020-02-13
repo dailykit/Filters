@@ -1,5 +1,5 @@
 {
-  "name": "filter",
+  "name": "@dailykit/filters",
   "version": "1.0.0",
   "description": "For filtering of data",
   "main": "index.js",
