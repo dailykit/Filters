@@ -117,7 +117,7 @@ const known = (input, arr) => {
                 else
                     false;
             }
-        } else if (!isUndefined) {
+        } else if (!isUndefined(obj)) {
             return !isEmpty(obj[input.key]) && !isNull(obj[input.key]);
         } else
             return false;

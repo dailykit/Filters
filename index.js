@@ -17,20 +17,6 @@ const filter = (obj, operation, data) => {
     }
 }
 
-console.log(filter({
-    key: 'date',
-    min: "2020-01-21T07:45:44.661+00:00",
-    max: "2020-03-21T07:45:44.661+00:00"
-}, 'between', [{
-    age: 27,
-    name: 'Mark',
-    date: "2020-01-21T07:45:44.661+00:00"
-}, {
-    age: 25,
-    name: 'Henry',
-    date: "2020-02-21T07:45:44.661+00:00"
-}, {
-    age: 20,
-    name: 'John',
-    date: "2020-03-21T07:45:44.661+00:00"
-}]));
+module.exports = {
+    filter
+}

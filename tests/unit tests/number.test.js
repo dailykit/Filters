@@ -5,11 +5,25 @@ const {
     assert
 } = require('chai');
 
-describe("number filters testing", () => {
+describe("Number Filters", () => {
 
     context("Equality", () => {
 
-        it("should successfully check for equality", (done) => {
+        it("should successfully check for equality - main level", (done) => {
+
+            let result = number_filters.eq({
+                key: 'id',
+                value: 1
+            }, data);
+            expect(result).to.exist;
+            expect(result.length).to.be.equal(1);
+            result.forEach(obj => {
+                assert.deepNestedPropertyVal(obj, "id", 1);
+            });
+            done();
+        });
+
+        it("should successfully check for equality - deep level", (done) => {
 
             let result = number_filters.eq({
                 key: 'age',
@@ -26,7 +40,18 @@ describe("number filters testing", () => {
 
     context("Less Than", () => {
 
-        it("should successfully check for less than", (done) => {
+        it("should successfully check for less than - main level", (done) => {
+
+            let result = number_filters.lt({
+                key: 'id',
+                value: 5
+            }, data);
+            expect(result).to.exist;
+            expect(result.length).to.be.equal(4);
+            done();
+        });
+
+        it("should successfully check for less than - deep level", (done) => {
 
             let result = number_filters.lt({
                 key: "age",
@@ -43,7 +68,21 @@ describe("number filters testing", () => {
 
     context("Less Than or Equal", () => {
 
-        it("should successfully check for less than or equal", (done) => {
+        it("should successfully check for less than or equal - main level", (done) => {
+
+            let result = number_filters.lte({
+                key: 'id',
+                value: 5
+            }, data);
+            expect(result).to.exist;
+            expect(result.length).to.be.equal(5);
+            result.forEach(obj => {
+                expect(obj).to.haveOwnProperty('id').to.be.lte(5);
+            });
+            done();
+        });
+
+        it("should successfully check for less than or equal - deep level", (done) => {
 
             let result = number_filters.lte({
                 key: "age",
@@ -61,7 +100,21 @@ describe("number filters testing", () => {
 
     context("Greater Than", () => {
 
-        it("should successfully check for greater than", (done) => {
+        it("should successfully check for greater than - main level", (done) => {
+
+            let result = number_filters.gt({
+                key: 'id',
+                value: 5
+            }, data);
+            expect(result).to.exist;
+            expect(result.length).to.be.equal(5);
+            result.forEach(obj => {
+                expect(obj).to.haveOwnProperty('id').to.be.gt(5);
+            });
+            done();
+        });
+
+        it("should successfully check for greater than - deep level", (done) => {
 
             let result = number_filters.gt({
                 key: "age",
@@ -79,7 +132,21 @@ describe("number filters testing", () => {
 
     context("Greater Than or equal", () => {
 
-        it("should successfully check for greater than or equal", (done) => {
+        it("should successfully check for greater than or equal - main level", (done) => {
+
+            let result = number_filters.gte({
+                key: 'id',
+                value: 5
+            }, data);
+            expect(result).to.exist;
+            expect(result.length).to.be.equal(6);
+            result.forEach(obj => {
+                expect(obj).to.haveOwnProperty('id').to.be.gte(5);
+            });
+            done();
+        });
+
+        it("should successfully check for greater than or equal - deep level", (done) => {
 
             let result = number_filters.gte({
                 key: "age",
@@ -97,7 +164,22 @@ describe("number filters testing", () => {
 
     context("Between", () => {
 
-        it("should successfully check for between", (done) => {
+        it("should successfully check for between - main level", (done) => {
+
+            let result = number_filters.between({
+                key: 'id',
+                min: 5,
+                max: 7
+            }, data);
+            expect(result).to.exist;
+            expect(result.length).to.be.equal(1);
+            result.forEach(obj => {
+                expect(obj).to.haveOwnProperty('id').to.be.gt(5).to.be.lt(7);
+            });
+            done();
+        });
+
+        it("should successfully check for between - deep level", (done) => {
 
             let result = number_filters.between({
                 key: "age",
@@ -116,7 +198,20 @@ describe("number filters testing", () => {
 
     context("Known", () => {
 
-        it("should successfully check for known key", (done) => {
+        it("should successfully check for known key - main level", (done) => {
+
+            let result = number_filters.known({
+                key: 'id'
+            }, data);
+            expect(result).to.exist;
+            expect(result.length).to.be.equal(10);
+            result.forEach(obj => {
+                expect(obj).to.haveOwnProperty('id');
+            });
+            done();
+        });
+
+        it("should successfully check for known key - deep level", (done) => {
 
             let result = number_filters.known({
                 key: "age"
@@ -133,7 +228,17 @@ describe("number filters testing", () => {
 
     context("Unknown", () => {
 
-        it("should successfully check for unknown key", (done) => {
+        it("should successfully check for unknown key - main level", (done) => {
+
+            let result = number_filters.unknown({
+                key: 'id'
+            }, data);
+            expect(result).to.exist;
+            expect(result.length).to.be.equal(0);
+            done();
+        });
+
+        it("should successfully check for unknown key - deep level", (done) => {
 
             let result = number_filters.unknown({
                 key: "age"
