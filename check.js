@@ -1,6 +1,8 @@
 const num_filter = require('./sub_functions/number');
 const string_filter = require('./sub_functions/string');
 const date_filter = require('./sub_functions/date');
+const boolean_filter = require('./sub_functions/boolean');
+const generic_known_unknown = require('./sub_functions/generic_known_unknown');
 
 //--------------------- Number filters --------------------------->
 
@@ -20,10 +22,6 @@ const number_filters = (input, operation, data) => {
             return num_filter.gte(input, data);
         case 'between':
             return num_filter.between(input, data);
-        case 'known':
-            return num_filter.known(input, data);
-        case 'unknown':
-            return num_filter.unknown(input, data);
         default:
             return "Error: Operation type invalid."
     }
@@ -41,10 +39,6 @@ const string_filters = (input, operation, data) => {
             return string_filter.contain_exactly(input, data);
         case 'nce':
             return string_filter.not_contain_exactly(input, data);
-        case 'known':
-            return string_filter.known(input, data);
-        case 'unknown':
-            return string_filter.unknown(input, data);
         case 'anyof':
             return string_filter.is_any_of(input, data);
         case 'noneof':
@@ -67,12 +61,34 @@ const date_filters = (input, operation, data) => {
             return date_filter.before(input, data);
         case 'after':
             return date_filter.after(input, data);
-        case 'known':
-            return date_filter.known(input, data);
-        case 'unknown':
-            return date_filter.unknown(input, data);
         case 'between':
             return date_filter.between(input, data);
+        default:
+            return "Error: Operation type invalid."
+    }
+}
+
+//--------------------- Boolean filters --------------------------->
+
+const boolean_filters = (input, operation, data) => {
+
+    switch (operation) {
+        case 'eq':
+            return boolean_filter.eq(input, data);
+        default:
+            return "Error: Operation type invalid."
+    }
+}
+
+//--------------------- Generic known and unknown filters --------------------------->
+
+const known_unknown_filters = (input, operation, data) => {
+
+    switch (operation) {
+        case 'known':
+            return generic_known_unknown.known(input, data);
+        case 'unknown':
+            return generic_known_unknown.unknown(input, data);
         default:
             return "Error: Operation type invalid."
     }
@@ -81,5 +97,7 @@ const date_filters = (input, operation, data) => {
 module.exports = {
     number_filters,
     string_filters,
-    date_filters
+    date_filters,
+    boolean_filters,
+    known_unknown_filters
 }

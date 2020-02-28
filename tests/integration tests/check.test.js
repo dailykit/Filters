@@ -1,7 +1,8 @@
 const {
     number_filters,
     string_filters,
-    date_filters
+    date_filters,
+    known_unknown_filters
 } = require('../../check');
 
 const {
@@ -82,28 +83,6 @@ describe("Check operation", () => {
             done();
         });
 
-        it("should check for known key", (done) => {
-
-            let result = number_filters({
-                key: "age"
-            }, 'known', data);
-
-            expect(result).to.exist;
-            expect(result.length).to.be.equal(10);
-            done();
-        });
-
-        it("should check for unknown key", (done) => {
-
-            let result = number_filters({
-                key: "age"
-            }, 'unknown', data);
-
-            expect(result).to.exist;
-            expect(result.length).to.be.equal(0);
-            done();
-        });
-
         it("should return error for invalid operation", (done) => {
 
             let result = number_filters({
@@ -147,27 +126,6 @@ describe("Check operation", () => {
             }, 'nce', data);
 
             expect(result).to.have.length(8);
-            done();
-        });
-
-        it("should check for known", (done) => {
-
-            let result = string_filters({
-                key: "hobby"
-            }, 'known', data);
-
-            expect(result).to.exist;
-            expect(result.length).to.be.equal(9);
-            done();
-        });
-
-        it("should check for unknown", (done) => {
-
-            let result = string_filters({
-                key: "hobby"
-            }, 'unknown', data);
-            expect(result).to.exist;
-            expect(result.length).to.be.equal(1);
             done();
         });
 
@@ -244,28 +202,6 @@ describe("Check operation", () => {
             done();
         });
 
-        it("should check for known", (done) => {
-
-            let result = date_filters({
-                key: "date"
-            }, 'known', data);
-
-            expect(result).to.exist;
-            expect(result).to.have.length(10);
-            done();
-        });
-
-        it("should check for unknown", (done) => {
-
-            let result = date_filters({
-                key: "date"
-            }, 'unknown', data);
-
-            expect(result).to.exist;
-            expect(result).to.have.length(0);
-            done();
-        });
-
         it("should check for between", (done) => {
 
             let result = date_filters({
@@ -286,6 +222,42 @@ describe("Check operation", () => {
             }, 'xyz', data);
 
             expect(result).to.be.equal('Error: Operation type invalid.');
+            done();
+        });
+    });
+
+    context("Generic Known and Unknown Filter", () => {
+
+        it("should check for known filter", (done) => {
+
+            let result = known_unknown_filters({
+                key: 'age'
+            }, 'known', data);
+
+            expect(result).to.exist;
+            expect(result.length).to.be.equal(10);
+            done();
+        });
+
+        it("should check for unknown filter", (done) => {
+
+            let result = known_unknown_filters({
+                key: 'hobby'
+            }, 'unknown', data);
+
+            expect(result).to.exist;
+            expect(result.length).to.be.equal(1);
+            done();
+        });
+
+        it("should return error for invalid operation", (done) => {
+
+            let result = known_unknown_filters({
+                key: 'hobby'
+            }, 'xyz', data);
+
+            expect(result).to.exist;
+            expect(result).to.be.equal("Error: Operation type invalid.");
             done();
         });
     });

@@ -58,37 +58,6 @@ describe("Date Filters", () => {
         });
     });
 
-    context("Known", () => {
-
-        it("should check for known key in object", (done) => {
-
-            let result = date_filter.known({
-                key: "date"
-            }, data);
-
-            expect(result).to.exist;
-            expect(result).to.have.length(10);
-            result.forEach(obj => {
-                expect(obj).to.haveOwnProperty('date');
-            });
-            done();
-        });
-    });
-
-    context("Unknown", () => {
-
-        it("should check for unknown key in object", (done) => {
-
-            let result = date_filter.unknown({
-                key: "date"
-            }, data);
-
-            expect(result).to.exist;
-            expect(result).to.have.length(0);
-            done();
-        });
-    });
-
     context("Between", () => {
 
         it("should find all dates falling between the specified dates", (done) => {

@@ -123,51 +123,11 @@ const between = (input, arr) => {
     });
 }
 
-const unknown = (input, arr) => {
-
-    return filter(arr, function (o) {
-        let matchedObjs = [];
-        let obj = deepSearch(o, input.key, matchedObjs);
-        if (matchedObjs.length != 0) {
-            for (let i = 0; i < matchedObjs.length; i++) {
-                if (isUndefined(matchedObjs[i][input.key]) || isNull(matchedObjs[i][input.key]))
-                    return true;
-                else
-                    false;
-            }
-        } else if (!isUndefined(obj)) {
-            return false;
-        } else
-            return true;
-    });
-}
-
-const known = (input, arr) => {
-
-    return filter(arr, function (o) {
-        let matchedObjs = [];
-        let obj = deepSearch(o, input.key, matchedObjs);
-        if (matchedObjs.length != 0) {
-            for (let i = 0; i < matchedObjs.length; i++) {
-                if (!isUndefined(matchedObjs[i][input.key]) && !isNull(matchedObjs[i][input.key]))
-                    return true;
-                else
-                    false;
-            }
-        } else if (!isUndefined(obj) && !isNull(obj)) {
-            return !isUndefined(obj[input.key]) ? true : false;
-        } else
-            return false;
-    });
-}
-
 module.exports = {
     eq,
     lt,
     lte,
     gt,
     gte,
-    between,
-    unknown,
-    known
+    between
 }

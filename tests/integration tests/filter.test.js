@@ -52,4 +52,31 @@ describe("Filter", () => {
             done();
         });
     });
+
+    context("Boolean", () => {
+
+        it("should type check for boolean filters", (done) => {
+            let result = filter({
+                key: 'valid',
+                value: true
+            }, 'eq', data);
+
+            expect(result).to.exist;
+            expect(result.length).to.be.equal(4);
+            done();
+        });
+    });
+
+    context("Generic Known Unknown", () => {
+
+        it("should type check for generic filters", (done) => {
+            let result = filter({
+                key: 'valid'
+            }, 'unknown', data);
+
+            expect(result).to.exist;
+            expect(result.length).to.be.equal(1);
+            done();
+        });
+    });
 });

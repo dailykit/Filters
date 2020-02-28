@@ -91,55 +91,6 @@ describe("String Filters", () => {
         });
     });
 
-    context("Known", () => {
-
-        it("should successfully check for known key - main-level", (done) => {
-
-            let result = string_filters.known({
-                key: "gender"
-            }, data);
-
-            expect(result).to.have.length(10);
-            done();
-        });
-
-        it("should successfully check for known key - deep-level", (done) => {
-
-            let result = string_filters.known({
-                key: "hobby"
-            }, data);
-
-            expect(result).to.exist;
-            expect(result.length).to.be.equal(9);
-            result.forEach(obj => {
-                expect(obj).to.haveOwnProperty('others').to.haveOwnProperty('extra').to.haveOwnProperty('hobby');
-            });
-            done();
-        });
-    });
-
-    context("Unknown", () => {
-
-        it("should successfully check for unknown key - main-level", (done) => {
-
-            let result = string_filters.unknown({
-                key: "gender"
-            }, data);
-
-            expect(result).to.have.length(0);
-            done();
-        });
-
-        it("should successfully check for unknown key - deep-level", (done) => {
-
-            let result = string_filters.unknown({
-                key: "hobby"
-            }, data);
-            expect(result).to.exist;
-            expect(result.length).to.be.equal(1);
-            done();
-        });
-    });
 
     context("Is Any Of", () => {
 

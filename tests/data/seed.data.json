@@ -10,7 +10,8 @@
         "skill": "C",
         "age": 21,
         "extra": {
-            "hobby": "Painting"
+            "hobby": "Painting",
+            "valid": false
         }
     }
 }, {
@@ -25,7 +26,8 @@
         "skill": "C++",
         "age": 24,
         "extra": {
-            "hobby": "Coding"
+            "hobby": "Coding",
+            "valid": false
         }
     }
 }, {
@@ -40,7 +42,8 @@
         "skill": "Java",
         "age": 29,
         "extra": {
-            "hobby": "Cooking"
+            "hobby": "Cooking",
+            "valid": false
         }
     }
 }, {
@@ -55,7 +58,8 @@
         "skill": "Python",
         "age": 18,
         "extra": {
-            "hobby": "Reading"
+            "hobby": "Reading",
+            "valid": false
         }
     }
 }, {
@@ -82,7 +86,8 @@
         "skill": "Flutter",
         "age": 27,
         "extra": {
-            "hobby": "Painting"
+            "hobby": "Painting",
+            "valid": false
         }
     }
 }, {
@@ -97,7 +102,8 @@
         "skill": "UI/UX",
         "age": 24,
         "extra": {
-            "hobby": "Reading"
+            "hobby": "Reading",
+            "valid": true
         }
     }
 }, {
@@ -112,7 +118,8 @@
         "skill": "AWS",
         "age": 29,
         "extra": {
-            "hobby": "Painting"
+            "hobby": "Painting",
+            "valid": true
         }
     }
 }, {
@@ -127,7 +134,8 @@
         "skill": "C",
         "age": 21,
         "extra": {
-            "hobby": "Painting"
+            "hobby": "Painting",
+            "valid": true
         }
     }
 }, {
@@ -142,7 +150,8 @@
         "skill": "C++",
         "age": 20,
         "extra": {
-            "hobby": "Sketching"
+            "hobby": "Sketching",
+            "valid": true
         }
     }
 }]
