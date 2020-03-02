@@ -56,16 +56,6 @@ Below is the syntax of how to use the filter function for different data types.
         filter({key: x<string>, min: y<number>, max: z<number>}, 'between', data<Array<Object>>);
     ```
 
-    * Known - key is known
-    ```
-        filter({key: x<string>}, 'known', data<Array<Object>>);
-    ```
-
-    * Unknown - key is unknown 
-    ```
-        filter({key: x<string>}, 'unknown', data<Array<Object>>);
-    ```
-
 2. String Filters 
 
     * Equality 
@@ -93,16 +83,6 @@ Below is the syntax of how to use the filter function for different data types.
         filter({key: x<string>, value: y<Array<string>>}, 'noneof', data<Array<Object>>);
     ```
 
-    * Known
-    ```
-        filter({key: x<string>}, 'known', data<Array<Object>>);
-    ```
-
-    * Unknown
-    ```
-        filter({key: x<string>}, 'unknown', data<Array<Object>>);
-    ```
-
 3. Date Filters 
 
     * Equality 
@@ -120,6 +100,20 @@ Below is the syntax of how to use the filter function for different data types.
         filter({key: x<string>, value: y<string>}, 'after', data<Array<Object>>);
     ```
 
+    * Between 
+    ```
+        filter({key: x<string>, min: y<string>, max: z<string>}, 'between', data<Array<Object>>);
+    ```
+
+4. Boolean Filters
+
+    * Equality 
+    ```
+        filter({key: x<string>, value: y<boolean>}, 'eq', data<Array<Object>>);
+    ```
+
+5. Generic Filters
+
     * Known 
     ```
         filter({key: x<string>}, 'known', data<Array<Object>>);
@@ -127,15 +121,15 @@ Below is the syntax of how to use the filter function for different data types.
     * Unknown 
     ```
         filter({key: x<string>}, 'unknown', data<Array<Object>>);
-    ```
-    * Between 
-    ```
-        filter({key: x<string>, min: y<string>, max: z<string>}, 'between', data<Array<Object>>);
-    ```
 
 ## Built With
 
 * [Nodejs](https://nodejs.org/en/)
+
+## Testing 
+
+For testing, open the terminal in the directory where the index file is and run the following command.
+> npm run test-watch
 
 ## Authors
 
